@@ -18,7 +18,7 @@ async def lifespan(app: FastAPI):
 
 app = get_fast_api_app(
     agents_dir=AGENTS_DIR,
-    web=False,
+    web=True,
     session_service_uri="sqlite+aiosqlite:///./session.db",
     lifespan=lifespan
 )

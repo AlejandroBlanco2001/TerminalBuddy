@@ -24,4 +24,4 @@ def read_output() -> str:
     """
     if terminal_module.session is None:
         return "Error: terminal session is not initialised."
-    return terminal_module.session.read_buffer()
+    return terminal_module.session.read_and_clear()
