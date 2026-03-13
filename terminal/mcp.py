@@ -1,4 +1,9 @@
-"""Context7 MCP for Google ADK — up-to-date library docs for the agent.
+"""MCP toolsets for the terminal-friend agent.
+
+Provides connections to:
+
+- Context7 MCP (up-to-date library documentation via Google ADK)
+- Filesystem MCP (read-only access to the local project files)
 """
 import os
 from pathlib import Path
