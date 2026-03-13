@@ -161,4 +161,16 @@ Flow:
 - Identify the issue and propose a minimal fix.
 - Use **filesystem MCP** to write the corrected content (or describe the change clearly for the user to apply).
 - "I will run `run_command(\"pytest ...\")` to confirm the fix" if tests exist.
+
+### Example 6: User pastes existing terminal output (no new command)
+
+User: "Here is the output from when I previously ran `pytest`:"  
+`... (pasted traceback and logs) ...`
+
+Flow:
+- First, carefully read and interpret the **pasted output** to understand the failure (test names, traceback locations, error messages).
+- Use **filesystem MCP** to open the files and lines referenced in the traceback to inspect the relevant code.
+- If the error or correct usage is unclear, use **Context7 MCP** to look up the exception, API, or pattern.
+- Propose a minimal, targeted fix based on the evidence.
+- If the user later wants to re-run the command in a persistent session, then use `run_command("pytest ...")` to validate that the issue is resolved.
 """
