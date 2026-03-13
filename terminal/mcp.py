@@ -23,4 +23,18 @@ context7_params = StdioConnectionParams(
     timeout=30.0,
 )
 
-mcps = McpToolset(connection_params=context7_params)
+context7_mcp = McpToolset(connection_params=context7_params)
+
+filesystem_params = StdioConnectionParams(
+    server_params=StdioServerParameters(
+        command="npx",
+        args=[
+            "-y",
+            "@modelcontextprotocol/server-filesystem",
+            os.path.abspath(_project_root),
+        ],
+    ),
+    timeout=30.0,
+)
+filesystem_mcp = McpToolset(connection_params=filesystem_params)
+
