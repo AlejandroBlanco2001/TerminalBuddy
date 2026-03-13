@@ -12,6 +12,7 @@ AGENTS_DIR = ROOT_FOLDER
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     terminal_module.session = TerminalSession()
+    terminal_module.session.send("uv run example/main.py")
     yield
     terminal_module.session.terminate()
     terminal_module.session = None
