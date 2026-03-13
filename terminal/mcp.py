@@ -1,11 +1,26 @@
+"""Context7 MCP for Google ADK — up-to-date library docs for the agent.
+"""
+import os
+from pathlib import Path
+
 from google.adk.tools.mcp_tool import McpToolset
-from google.adk.tools.mcp_tool.mcp_session_manager import SseConnectionParams
+from google.adk.tools.mcp_tool.mcp_session_manager import StdioConnectionParams
+from mcp import StdioServerParameters
 
+_project_root = Path(__file__).resolve().parent.parent
 
-context_7_mcp = SseConnectionParams(
-    url="https://mcp.context7.com/mcp",
+_env = os.environ.copy()
+if os.environ.get("CONTEXT7_API_KEY"):
+    _env["CONTEXT7_API_KEY"] = os.environ["CONTEXT7_API_KEY"]
+
+context7_params = StdioConnectionParams(
+    server_params=StdioServerParameters(
+        command="npx",
+        args=["-y", "@upstash/context7-mcp"],
+        env=_env,
+        cwd=_project_root,
+    ),
+    timeout=30.0,
 )
 
-mcps = McpToolset(
-    connection_params=context_7_mcp,
-)
+mcps = McpToolset(connection_params=context7_params)
